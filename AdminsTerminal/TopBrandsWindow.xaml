@@ -1,0 +1,46 @@
+﻿<Window x:Class="AdminsTerminal.TopBrandsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminsTerminal"
+        mc:Ignorable="d"
+        Title="Топ брендов" Height="600" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" MinHeight="1000" MinWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#160A62" Grid.ColumnSpan="2">
+            <TextBlock Grid.Row="0" Text="GRACEFUL SHINE" FontSize="30" VerticalAlignment="Center" Foreground="White"  TextAlignment="Center" HorizontalAlignment="Center"/>
+            <Image HorizontalAlignment="Right" Grid.Row="0" Margin="5" Name="LogoIm"/>
+        </Grid>
+        <TextBlock Text="Топ-5 лучших брендов" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" FontSize="40"/>
+        <Grid Grid.Row="2">
+            <ListView Name="List" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="#0224a6" SelectionChanged="List_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="380"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Count}" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Brand, StringFormat=' {0} '}" TextAlignment="Center" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Amount, StringFormat='Продано {0} шт продукции'}" Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Height" Value="140"/>
+                    </Style>
+                </ListView.Resources>
+            </ListView>
+        </Grid>
+        <Button Width="200" Height="50" Background="#FF627AC7" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" Content="Назад" Click="Back" Grid.Row="3"  FontSize="35"/>
+    </Grid>
+</Window>

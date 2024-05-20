@@ -1,0 +1,66 @@
+﻿<Window x:Class="ShopCosmetic.More"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShopCosmetic"
+        mc:Ignorable="d"
+        Title="Описание товара" Height="650" Width="600" MaxHeight="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Pictures/NoPicture.jpg" Closing="Window_Closing">
+    <Grid Background="#d5c9f5" Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Grid Background="White">
+                    <Image Grid.Row="0" Stretch="Uniform" Width="290" Height="290" Margin="5">
+                        <Image.Source>
+                            <Binding Path="photoBinary">
+                                <Binding.TargetNullValue>
+                                    <ImageSource>Pictures\NoPicture.jpg</ImageSource>
+                                </Binding.TargetNullValue>
+                            </Binding>
+                        </Image.Source>
+                    </Image>
+                </Grid>
+                <Grid Background="White">
+                    <TextBlock Text="{Binding name}" Grid.Row="1" HorizontalAlignment="Left" FontSize="30" Margin="5" TextWrapping="Wrap"/>
+                </Grid>
+                <Grid Background="White">
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="{Binding PriceClientText}" FontSize="25"  Margin="0,2,2,0">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{Binding ColorFont}"/>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                        <TextBlock FontSize="18" Text="{Binding Percent}" Visibility="{Binding VisibleBool}" >
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{Binding ColorFont}"/>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                        <TextBlock Margin="5" FontSize="18" Text="{Binding price, StringFormat={}{0:N2} руб}" TextDecorations="Strikethrough" Visibility="{Binding VisibleBool}"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Visibility="{Binding VisibleDesc}" Text="{Binding description, StringFormat=Описание: {0}}" Grid.Row="3" HorizontalAlignment="left" FontSize="16" TextWrapping="Wrap" Margin="10"/>
+                <TextBlock Text="{Binding TypePurpose1.name, StringFormat='Назначение: {0}'}" Width="Auto" HorizontalAlignment="Left" FontSize="22" Grid.Row="4" Name="TPr" Margin="10"/>
+                <TextBlock Text="{Binding Brand1.name, StringFormat='Бренд: {0}'}" Width="Auto" Grid.Row="5" HorizontalAlignment="Left" FontSize="22" Margin="10"/>
+                <TextBlock  Grid.Row="6" Text="{Binding sclad,StringFormat='В наличии: {0} шт.'}" FontSize="20" Margin="10"/>
+            </StackPanel>
+
+        </ScrollViewer>
+        <Grid Grid.Row="2" Background="white">
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Left" Margin="5">
+                    <Button IsEnabled="False" Background="#FF627AC7" Foreground="White" Content="-" Width="35" Height="35" Margin="1" Click="Minus" Name="Min" FontSize="25"/>
+                    <TextBox Name="Kolvo" Width="75" FontSize="30" Height="35" Margin="1" BorderThickness="2" BorderBrush="Gray" Background="White" Text="1" TextAlignment="Center" IsReadOnly="True"/>
+                    <Button Background="#FF627AC7" Foreground="White" Content="+" Width="35" Height="35" Margin="1" Click="Plus" Name="Max" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Button Content="В корзину" Grid.Row="7" Click="InBag" HorizontalAlignment="Center" Background="#0224a6" Height="35" Width="100" FontSize="18" Foreground="White"/>
+            </StackPanel>
+            <Button Height="35" Content="Назад" Background="#FF627AC7" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" Width="100" FontSize="14" Click="Back"/>
+        </Grid>
+
+    </Grid>
+
+</Window>
